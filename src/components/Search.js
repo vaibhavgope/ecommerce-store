@@ -3,7 +3,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { config } from "../App";
 import Cart from "./Cart";
-import Header from "./Header";
+import Header from "./Header/Header";
 import Product from "./Product";
 import { Row, Col } from "antd";
 import Footer from "./Footer";

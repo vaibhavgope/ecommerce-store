@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import Header from "./Header";
+import Header from "./Header/Header";
 import "./Thanks.css";
 
 class Thanks extends React.Component {

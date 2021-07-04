@@ -6,7 +6,7 @@ import { config } from "../App";
 import Cart from "./Cart";
 import "./Checkout.css";
 import Footer from "./Footer";
-import Header from "./Header";
+import Header from "./Header/Header";
 
 
 class Checkout extends React.Component {

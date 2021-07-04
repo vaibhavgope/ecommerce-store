@@ -38,37 +38,9 @@ export default class Header extends React.Component {
         {/* Display links based on if the user's logged in or not */}
         <div className="header-action">
           {localStorage.getItem("username") ? (
-            <>
-              <img
-                src="avatar.png"
-                alt="profile"
-                className="profile-image"
-              ></img>
-
-              <div className="header-info">
-                {localStorage.getItem("username")}
-              </div>
-
-              <Button type="primary" onClick={this.logout}>
-                Logout
-              </Button>
-            </>
+            <LoggedInView logout={this.logout} explore={this.explore} />
           ) : (
-            <>
-              <div className="header-link" onClick={this.explore}>
-                Explore
-              </div>
-
-              <div className="header-link" onClick={this.login}>
-                Login
-              </div>
-
-              <div className="header-link">
-                <Button type="primary" onClick={this.register}>
-                  Register
-                </Button>
-              </div>
-            </>
+            <LoggedOutView login={this.login} explore={this.explore} register={this.register} />
           )}
         </div>
       </div>

@@ -4,7 +4,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { config } from "../App";
 import Footer from "./Footer";
-import Header from "./Header";
+import Header from "./Header/Header";
 
 class Login extends React.Component {
   constructor() {
