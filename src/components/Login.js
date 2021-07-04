@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { config } from "../App";
 import Footer from "./Footer";
 import Header from "./Header/Header";
+import makeApiCall from "./utils/makeApiCall";
 
 class Login extends React.Component {
   constructor() {
@@ -26,17 +27,12 @@ class Login extends React.Component {
     });
 
     try {
-      response = await fetch(`${config.endpoint}/auth/login`, {
-        method: "POST",
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then(resp => resp.json());
+      response = await makeApiCall(`${config.endpoint}/auth/login`, "POST", {
+        "Content-type": "application/json; charset=UTF-8",
+      }, {
+        username: this.state.username,
+        password: this.state.password,
+      })
     } catch (error) {
       errored = true;
     }

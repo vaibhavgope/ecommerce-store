@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import "./Checkout.css";
 import Footer from "./Footer";
 import Header from "./Header/Header";
+import makeApiCall from "./utils/makeApiCall";
 
 
 class Checkout extends React.Component {
@@ -50,7 +51,7 @@ class Checkout extends React.Component {
     });
 
     try {
-      response = await (await fetch(`${config.endpoint}/products`)).json();
+      response = await makeApiCall(`${config.endpoint}/products`);
     } catch (e) {
       errored = true;
     }
@@ -93,14 +94,9 @@ class Checkout extends React.Component {
     });
 
     try {
-      response = await (
-        await fetch(`${config.endpoint}/user/addresses`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-      ).json();
+      response = await makeApiCall(`${config.endpoint}/user/addresses`, "GET", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      })
     } catch (e) {
       errored = true;
     }
@@ -128,18 +124,12 @@ class Checkout extends React.Component {
     });
 
     try {
-      response = await (
-        await fetch(`${config.endpoint}/user/addresses`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            address: this.state.newAddress,
-          }),
-        })
-      ).json();
+      response = await makeApiCall(`${config.endpoint}/user/addresses`, "POST", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      }, {
+        address: this.state.newAddress,
+      })
     } catch (e) {
       errored = true;
     }
@@ -167,13 +157,10 @@ class Checkout extends React.Component {
     let errored = false;
     this.setState({ loading: true });
     try {
-      response = await fetch(`${config.endpoint}/user/addresses/${addressId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-type": "application/json",
-        },
-      }).then((resp) => resp.json());
+      response = await makeApiCall(`${config.endpoint}/user/addresses/${addressId}`, "DELETE", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-type": "application/json",
+      })
     } catch (e) {
       errored = true;
     }
@@ -197,19 +184,14 @@ class Checkout extends React.Component {
     });
 
     try {
-      response = await (
-        await fetch(`${config.endpoint}/cart/checkout`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            addressId: this.state.addresses[this.state.selectedAddressIndex]
-              ._id,
-          }),
-        })
-      ).json();
+      response = await makeApiCall(`${config.endpoint}/cart/checkout`, "POST", {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      }, {
+        addressId: this.state.addresses[this.state.selectedAddressIndex]
+          ._id,
+      })
+
     } catch (e) {
       errored = true;
     }

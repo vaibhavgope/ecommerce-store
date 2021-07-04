@@ -7,10 +7,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Search from "./components/Search";
 import Thanks from "./components/Thanks";
-import ipConfig from "./ipConfig.json";
 
 export const config = {
-  endpoint: `https://ecom-kart-backend.herokuapp.com/api/v1`,
+  endpoint: `https://backend-of-ecom-kart.herokuapp.com/api/v1`,
 };
 
 export default function App(props) {

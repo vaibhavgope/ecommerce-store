@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { config } from "../App";
 import Footer from "./Footer";
 import Header from "./Header/Header";
+import makeApiCall from "./utils/makeApiCall";
 
 class Register extends React.Component {
   constructor() {
@@ -17,32 +18,29 @@ class Register extends React.Component {
     };
   }
 
-
+  showSpinner = (show) => {
+    this.setState({
+      loading: show,
+    });
+  }
   performAPICall = async () => {
     let response = {};
     let errored = false;
 
-    this.setState({
-      loading: true,
-    });
-    try {
-      response = await fetch(`${config.endpoint}/auth/register`, {
-        method: "POST",
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
+    this.showSpinner(true);
 
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then(resp => resp.json());
+    try {
+      response = await makeApiCall(`${config.endpoint}/auth/register`, "POST", {
+        "Content-type": "application/json; charset=UTF-8",
+      }, {
+        username: this.state.username,
+        password: this.state.password,
+      })
     } catch (error) {
       errored = true;
     }
-    this.setState({
-      loading: false,
-    });
+    this.showSpinner(false);
+
     if (this.validateResponse(errored, response))
       return response;
     return null;

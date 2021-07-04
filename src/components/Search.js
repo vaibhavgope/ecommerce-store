@@ -8,6 +8,7 @@ import Product from "./Product";
 import { Row, Col } from "antd";
 import Footer from "./Footer";
 import "./Search.css";
+import makeApiCall from "./utils/makeApiCall";
 
 class Search extends React.Component {
   constructor() {
@@ -49,7 +50,7 @@ class Search extends React.Component {
     });
 
     try {
-      response = await fetch(`${config.endpoint}/products`).then(resp => resp.json());
+      response = await makeApiCall(`${config.endpoint}/products`)
     } catch (e) {
       errored = true;
     }

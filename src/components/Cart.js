@@ -3,7 +3,7 @@ import { Button, Card, message, Spin, InputNumber } from "antd";
 import React from "react";
 import { config } from "../App";
 import "./Cart.css";
-
+import makeApiCall from "./utils/makeApiCall";
 
 export default class Cart extends React.Component {
   constructor() {
@@ -37,14 +37,9 @@ export default class Cart extends React.Component {
       loading: true,
     });
     try {
-      response = await (
-        await fetch(`${config.endpoint}/cart`, {
-          method: "GET",
-          headers: {
-            'Authorization': `Bearer ${this.props.token}`,
-          },
-        })
-      ).json();
+      response = await makeApiCall(`${config.endpoint}/cart`, "GET", {
+        'Authorization': `Bearer ${this.props.token}`,
+      });
     } catch (e) {
       errored = true;
     }
@@ -76,19 +71,13 @@ export default class Cart extends React.Component {
     });
 
     try {
-      response = await (
-        await fetch(`${config.endpoint}/cart`, {
-          method: "POST",
-          body: JSON.stringify({
-            productId: productId,
-            qty: qty,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.props.token}`,
-          },
-        })
-      ).json();
+      response = await makeApiCall(`${config.endpoint}/cart`, "POST", {
+        productId: productId,
+        qty: qty,
+      }, {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.props.token}`,
+      })
     } catch (e) {
       errored = true;
     }

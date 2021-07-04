@@ -1,6 +1,7 @@
-import { Button } from "antd";
 import React from "react";
 import "./Header.css";
+import LoggedOutView from "./LoggedOutView";
+import LoggedInView from "./LoggedInView";
 
 export default class Header extends React.Component {
   root = () => {
