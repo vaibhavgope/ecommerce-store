@@ -8,7 +8,8 @@ import Product from "./Product";
 import { Row, Col } from "antd";
 import Footer from "./Footer";
 import "./Search.css";
-import makeApiCall from "./utils/makeApiCall";
+import makeApiCall from "../utils/makeApiCall";
+import routes from "../config/config";
 
 class Search extends React.Component {
   constructor() {
@@ -114,7 +115,7 @@ class Search extends React.Component {
               this.cartRef.current.pushToCart(product._id, 1, true);
               console.log(this.cartRef.current);
 
-            } else this.props.history.push("/login");
+            } else this.props.history.push(routes.loginRoute);
           }}
         />
       </Col>

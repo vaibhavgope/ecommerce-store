@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Search from "./components/Search";
 import Thanks from "./components/Thanks";
+import routes from "./config";
 
 export const config = {
   endpoint: `https://backend-of-ecom-kart.herokuapp.com/api/v1`,
@@ -22,26 +23,26 @@ export default function App(props) {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/register">
+        <Route exact path={routes.registerRoute}>
           <Register />
         </Route>
-        <Route exact path="/login">
+        <Route exact path={routes.loginRoute}>
           <Login />
         </Route>
-        <Route path="/products">
+        <Route path={routes.productsRoute}>
           <Search />
         </Route>
 
-        <Route path="/checkout">
+        <Route path={routes.checkoutRoute}>
           <Checkout />
         </Route>
 
-        <Route path="/thanks">
+        <Route path={routes.thanksRoute}>
           <Thanks />
         </Route>
 
 
-        <Route path="/">
+        <Route path={routes.homeRoute}>
           <Home />
         </Route>
       </Switch>

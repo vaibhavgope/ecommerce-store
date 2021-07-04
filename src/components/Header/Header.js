@@ -2,28 +2,29 @@ import React from "react";
 import "./Header.css";
 import LoggedOutView from "./LoggedOutView";
 import LoggedInView from "./LoggedInView";
+import routes from "../../config/config";
 
 export default class Header extends React.Component {
   root = () => {
-    this.props.history.push("/");
+    this.props.history.push(routes.homeRoute);
   };
 
   explore = () => {
-    this.props.history.push("/products");
+    this.props.history.push(routes.productsRoute);
   };
 
   register = () => {
-    this.props.history.push("/register");
+    this.props.history.push(routes.registerRoute);
   };
 
   login = () => {
-    this.props.history.push("/login");
+    this.props.history.push(routes.loginRoute);
   };
 
   logout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("token");
-    this.props.history.push("/");
+    this.props.history.push(routess.homeRoute);
   };
 
   render() {

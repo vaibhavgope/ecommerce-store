@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import routes from "../config/config";
 import Header from "./Header/Header";
 import "./Thanks.css";
 
@@ -26,7 +27,7 @@ class Thanks extends React.Component {
             Wallet balance: <br></br>₹{localStorage.getItem("balance")}{" "} available
           </div>
 
-          <Link to="/products" className="thanks-line">
+          <Link to={routes.productsRoute} className="thanks-line">
             <Button type="primary">Browse for more products</Button>
           </Link>
         </div>

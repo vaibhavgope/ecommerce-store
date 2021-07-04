@@ -7,8 +7,8 @@ import Cart from "./Cart";
 import "./Checkout.css";
 import Footer from "./Footer";
 import Header from "./Header/Header";
-import makeApiCall from "./utils/makeApiCall";
-
+import makeApiCall from "../utils/makeApiCall";
+import routes from "../config/config"
 
 class Checkout extends React.Component {
   constructor() {
@@ -206,7 +206,7 @@ class Checkout extends React.Component {
         "balance",
         this.state.balance - this.cartRef.current.calculateTotal()
       );
-      this.props.history.push("/thanks");
+      this.props.history.push(routes.thanksRoute);
     }
   };
 

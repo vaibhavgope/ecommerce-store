@@ -3,7 +3,7 @@ import { Button, Card, message, Spin, InputNumber } from "antd";
 import React from "react";
 import { config } from "../App";
 import "./Cart.css";
-import makeApiCall from "./utils/makeApiCall";
+import makeApiCall from "../utils/makeApiCall";
 
 export default class Cart extends React.Component {
   constructor() {

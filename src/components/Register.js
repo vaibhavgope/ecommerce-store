@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { config } from "../App";
 import Footer from "./Footer";
 import Header from "./Header/Header";
-import makeApiCall from "./utils/makeApiCall";
+import makeApiCall from "../utils/makeApiCall";
 
 class Register extends React.Component {
   constructor() {
